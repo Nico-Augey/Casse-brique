@@ -124,6 +124,8 @@ MonoBehaviour:
   material2: {fileID: 2100000, guid: ed434561ebb45a7438fa41d257acd88d, type: 2}
   material3: {fileID: 2100000, guid: 41fefffdd08d7ce4ea37be0ca4dfd709, type: 2}
   material4: {fileID: 2100000, guid: 01a23a93d47d71246b504d3e266ff9d7, type: 2}
+  material5: {fileID: 2100000, guid: 51d08961e635a6e4184c20c48cf99266, type: 2}
+  material6: {fileID: 2100000, guid: b7c13ae4ce4b1bc468d20357b1a2b73b, type: 2}
 --- !u!54 &-8884441284737661041
 Rigidbody:
   m_ObjectHideFlags: 0

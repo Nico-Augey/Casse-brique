@@ -4,11 +4,24 @@ using UnityEngine;
 
 public class BallController : MonoBehaviour
 {
+    public static BallController instance; // Instance du BallController pour le singleton
     public float speed = 50f; // Vitesse de la balle
     private Rigidbody rb; // Composant Rigidbody de la balle
     private Vector3 direction; // Direction de la balle
     private bool isSpeedBoosted = false; // Indique si la balle est en vitesse boostée
 
+    void Awake()
+    {
+        // Initialisation du singleton
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
     void Start()
     {
         rb = GetComponent<Rigidbody>(); // Récupérer le composant Rigidbody

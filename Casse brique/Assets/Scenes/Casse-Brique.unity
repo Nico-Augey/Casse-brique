@@ -183,7 +183,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc0698f56e202c4eacc86dc1385b24f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 25
+  speed: 35
   ball: {fileID: 1277662748}
   minX: -16.5
   maxX: 16.5

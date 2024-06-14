@@ -94,6 +94,30 @@ public class GameController : MonoBehaviour
                 brick.tag = "Brick";
             }
         }
+        GameObject[] bricks = GameObject.FindGameObjectsWithTag("Brick");
+
+        // Obtenir le nombre de briques
+        int count = bricks.Length;
+
+        int indexBriqueBonus = Random.Range(1, count); // Obtenir l'indice de la brique bonus
+
+        int indexBriqueMalus;
+        
+        // Générer le second nombre aléatoire jusqu'à ce qu'il soit différent du premier pour obtenir l'indice de la brique malus
+        do
+        {
+            indexBriqueMalus = Random.Range(1, count);
+        } while (indexBriqueMalus == indexBriqueBonus);
+
+        // Récupérer les briques bonus et malues
+        GameObject brickBonus = bricks[indexBriqueMalus];
+        GameObject brickMalus = bricks[indexBriqueBonus];
+
+        // Affecter une résistance négatives pour les traiter différement des autres briques
+        brickBonus.GetComponent<Brick>().resistance = -1;
+        brickMalus.GetComponent<Brick>().resistance = -2;
+        
+
     }
 
     // Gérer la perte d'une vie

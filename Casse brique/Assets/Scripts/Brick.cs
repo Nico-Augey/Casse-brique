@@ -10,6 +10,8 @@ public class Brick : MonoBehaviour
     public Material material2; // Matériau pour résistance 2
     public Material material3; // Matériau pour résistance 3
     public Material material4; // Matériau pour résistance 4
+    public Material material5; // Matériau pour résistance 3
+    public Material material6; // Matériau pour résistance 4
 
     void Start()
     {
@@ -20,17 +22,33 @@ public class Brick : MonoBehaviour
     // Fonction appelée lorsque la brique est touchée
     public void Hit()
     {
-        resistance--; // Réduire la résistance de la brique
-        GameController.instance.AddScore(1); // Ajouter des points pour avoir touché une brique
-        if (resistance <= 0)
+        // Si brique bonus
+        if (resistance == -1)
         {
+            BallController.instance.speed = 20f; // Diminuer la vitesse de la balle
             Destroy(gameObject); // Détruire la brique si la résistance est 0
-            GameController.instance.AddScore(3); // Ajouter des points supplémentaires pour avoir détruit la brique
         }
-        else
+        // Sinon brique malus
+        else if (resistance == -2)
         {
-            UpdateColor(); // Mettre à jour la couleur en fonction de la résistance restante
+            BallController.instance.speed = 30f; // Augmenter la vitesse de la balle
+            Destroy(gameObject); // Détruire la brique si la résistance est 0
         }
+        else 
+        {
+            resistance--; // Réduire la résistance de la brique
+            GameController.instance.AddScore(1); // Ajouter des points pour avoir touché une brique
+            if (resistance <= 0)
+            {
+                Destroy(gameObject); // Détruire la brique si la résistance est 0
+                GameController.instance.AddScore(3); // Ajouter des points supplémentaires pour avoir détruit la brique
+            }
+            else
+            {
+                UpdateColor(); // Mettre à jour la couleur en fonction de la résistance restante
+            }            
+        }
+        
     }
 
     // Fonction pour mettre à jour la couleur de la brique
@@ -43,6 +61,8 @@ public class Brick : MonoBehaviour
             case 3: materialToUse = material3; break;
             case 2: materialToUse = material2; break;
             case 1: materialToUse = material1; break;
+            case -1: materialToUse = material5; break; // Matériau Bonus
+            case -2: materialToUse = material6; break; // Matériau Malus
         }
 
         if (materialToUse != null)
